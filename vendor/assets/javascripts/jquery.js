@@ -1510,7 +1510,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Support: IE>8
 	// If iframe document is assigned to "document" variable and if iframe has been reloaded,
 	// IE will throw "permission denied" error when accessing "document" variable, see jQuery #13936
-	if ( parent && parent.frameElement ) {
+	// see: http://stackoverflow.com/questions/17087806/jquery-is-not-working-in-my-facebook-application-in-internet-explorer-access-i/17087807#17087807
+	if ( parent && parent.frameElement && parent !== parent.top) {
 		parent.attachEvent( "onbeforeunload", function() {
 			setDocument();
 		});
